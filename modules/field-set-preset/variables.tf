@@ -1,16 +1,5 @@
-variable "api_url" {
-  description = "Enderlane GraphQL v2 endpoint."
-  type        = string
-}
-
-variable "api_key" {
-  description = "Enderlane machine API key (sent as X-API-Key). Stored in state — treat state as a secret."
-  type        = string
-  sensitive   = true
-}
-
 variable "name" {
-  description = "Preset name. Unique per tenant; the idempotency key. Do NOT reuse a seeded system preset name ('Build', 'Config version')."
+  description = "Preset name. Unique per tenant. Do NOT reuse a seeded system preset name ('Build', 'Config version')."
   type        = string
 }
 
@@ -22,9 +11,9 @@ variable "description" {
 
 variable "fields" {
   description = <<-EOT
-    Ordered list of fields the preset defines. Each:
+    Ordered list of fields the preset defines (at least one). Each:
       - name           (required)
-      - required       (required, bool) whether a unit must carry this field
+      - required       (required, bool)
       - description     (optional)
       - allowed_values  (optional) non-empty allowed-values list when set
   EOT

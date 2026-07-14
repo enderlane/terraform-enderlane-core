@@ -1,16 +1,5 @@
-variable "api_url" {
-  description = "Enderlane GraphQL v2 endpoint."
-  type        = string
-}
-
-variable "api_key" {
-  description = "Enderlane machine API key (sent as X-API-Key). Stored in state — treat state as a secret."
-  type        = string
-  sensitive   = true
-}
-
 variable "name" {
-  description = "Edge provider config name. Unique per tenant; the idempotency key."
+  description = "Edge provider config name. Unique per tenant."
   type        = string
 }
 
@@ -31,7 +20,7 @@ variable "cloudflare_account_id" {
 }
 
 variable "cloudflare_api_token" {
-  description = "Cloudflare API token (CLOUDFLARE provider). Write-only in the API; never read back. Passed via the environment only, never stored in state (only a hash is tracked)."
+  description = "Cloudflare API token (CLOUDFLARE provider). Write-only in the API; never read back."
   type        = string
   default     = null
   sensitive   = true
@@ -56,7 +45,7 @@ variable "aws_access_key_id" {
 }
 
 variable "aws_secret_access_key" {
-  description = "AWS secret access key (CLOUDFRONT provider). Write-only in the API; never read back. Passed via the environment only, never stored in state (only a hash is tracked)."
+  description = "AWS secret access key (CLOUDFRONT provider). Write-only in the API; never read back."
   type        = string
   default     = null
   sensitive   = true

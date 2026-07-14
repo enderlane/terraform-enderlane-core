@@ -20,7 +20,7 @@ output "group_stage_ids" {
 
 output "default_stage_ids" {
   description = "Map of tenant-default stage name to id."
-  value       = { for name, d in data.external.tenant_default_stage : name => d.result.id }
+  value       = { for name, r in enderlane_stage.default : name => r.id }
 }
 
 output "field_set_preset_ids" {

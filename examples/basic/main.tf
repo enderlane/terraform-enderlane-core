@@ -1,31 +1,26 @@
 # Basic example: one lane group with two lanes, on the tenant-default stage
 # progression. No edge configs, gates, or presets.
 #
-#   export TF_VAR_api_key="<your-enderlane-machine-key>"
+#   export ENDERLANE_API_KEY="<your-machine-key>"
+#   # export ENDERLANE_API_URL="https://app.enderlane.com/graphql"   # default
 #   terraform init && terraform apply
-#
-# Targets a local preview backend by default; point api_url at your real
-# Enderlane instance for production use.
 
 terraform {
   required_version = ">= 1.5"
+  required_providers {
+    enderlane = {
+      source  = "enderlane/enderlane"
+      version = ">= 0.1.0"
+    }
+  }
 }
 
-variable "api_url" {
-  type    = string
-  default = "http://127.0.0.1:5300/graphql"
-}
-
-variable "api_key" {
-  type      = string
-  sensitive = true
-}
+# API key/URL come from ENDERLANE_API_KEY / ENDERLANE_API_URL (recommended), or
+# set them here explicitly.
+provider "enderlane" {}
 
 module "tenant" {
   source = "../../"
-
-  api_url = var.api_url
-  api_key = var.api_key
 
   default_stages = {
     alpha   = { order_index = 0 }
