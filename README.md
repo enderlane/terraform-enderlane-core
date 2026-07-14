@@ -1,14 +1,13 @@
 # terraform-enderlane-core
 
-Declare an entire [Enderlane](https://www.enderlane.com) tenant's release
-configuration as code — so a team can stand up (and version) its whole release
-setup without clicking through the UI.
-
-Enderlane is a release-management product. This module provisions, in one
-declarative block:
+Enderlane moves the things you ship — builds, configuration versions, anything
+versioned — through stages you define, safely. This
+[Enderlane](https://app.enderlane.com) module declares an entire tenant's
+configuration as code, so a team can stand up (and version) its whole setup
+without clicking through the UI. It provisions, in one declarative block:
 
 - **Edge provider configs** — Cloudflare KV / AWS CloudFront KVS credentials a
-  promotion writes its release pointer to.
+  promotion updates the edge pointer with.
 - **Lane groups** — a family of things shipped together — each with its
   **lanes** (deployable apps/components) and, optionally, a per-group **stage**
   override progression.
@@ -24,10 +23,9 @@ Built on the official **[`enderlane`](https://registry.terraform.io/providers/en
 Terraform provider: every entity is a first-class provider resource with real
 plan/apply/drift semantics.
 
-> **Vocabulary note.** Enderlane's v2 API (and this module) use *lane group*,
-> *lane*, *stage*. The same entities were historically *application group*,
-> *application*, *release group*; a lane group **is** an application group (same
-> row, same id).
+> **Vocabulary.** A **lane group** owns an ordered set of **stages**; a **lane**
+> is one deployable thing within the group; a **unit** (a build or a
+> configuration version) moves through the stages within a lane.
 
 ## Quick start
 

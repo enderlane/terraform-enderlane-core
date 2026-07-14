@@ -108,7 +108,7 @@ module "tenant" {
         {
           mode = "ALL"
           conditions = [
-            { kind = "APPROVAL", subject = "release-manager" },
+            { kind = "APPROVAL", subject = "platform-lead" },
             { kind = "SOAK", duration_minutes = 60 },
           ]
         },
