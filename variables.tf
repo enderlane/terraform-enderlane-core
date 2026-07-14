@@ -112,7 +112,11 @@ variable "gate_chains" {
       - scope_lane       lane name (required for lane scope)
       - is_entry         true = entry transition (to_stage null); false = a hop
       - to_stage         destination stage name (required when is_entry false)
-      - initiation_mode  MANUAL | AUTO
+      - initiation_mode  MANUAL | AUTO. LIVE behaviour today: AUTO on an entry
+                         chain auto-promotes a freshly registered unit. The
+                         STEPS below are stored/resolved/read but not yet
+                         evaluated in the promotion path (evaluator is on the
+                         Enderlane roadmap).
       - steps            ordered steps (may be empty). Each step:
           - mode         SINGLE | ALL | ANY
           - conditions   list of { kind (APPROVAL|FREEZE|SOAK|DEPENDENCY),
